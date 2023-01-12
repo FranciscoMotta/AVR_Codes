@@ -1,0 +1,20 @@
+/* Inclusión de archivos */
+
+#include <avr/io.h>  
+
+/* Definicion de macros */
+
+
+/* Declaración de funciones */
+
+/* Principal */
+
+int main(void)
+{
+    /* Replace with your application code */
+    while (1) 
+    {
+    }
+}
+
+/* Definición de funciones */
