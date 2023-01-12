@@ -3,31 +3,31 @@ LCD_FIRST_SIMPLE.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000008  00800200  000001fa  0000028e  2**0
+  0 .data         00000008  00800200  0000021a  000002ae  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000001fa  00000000  00000000  00000094  2**1
+  1 .text         0000021a  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000003  00800208  00800208  00000296  2**0
+  2 .bss          00000003  00800208  00800208  000002b6  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000296  2**0
+  3 .comment      00000030  00000000  00000000  000002b6  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000002c8  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000002e8  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000050  00000000  00000000  00000308  2**0
+  5 .debug_aranges 00000050  00000000  00000000  00000328  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00001190  00000000  00000000  00000358  2**0
+  6 .debug_info   000011cb  00000000  00000000  00000378  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000cdf  00000000  00000000  000014e8  2**0
+  7 .debug_abbrev 00000d0b  00000000  00000000  00001543  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000456  00000000  00000000  000021c7  2**0
+  8 .debug_line   00000472  00000000  00000000  0000224e  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000094  00000000  00000000  00002620  2**2
+  9 .debug_frame  00000094  00000000  00000000  000026c0  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000099d  00000000  00000000  000026b4  2**0
+ 10 .debug_str    0000099d  00000000  00000000  00002754  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000001af  00000000  00000000  00003051  2**0
+ 11 .debug_loc    000001af  00000000  00000000  000030f1  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000040  00000000  00000000  00003200  2**0
+ 12 .debug_ranges 00000040  00000000  00000000  000032a0  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -162,8 +162,8 @@ Disassembly of section .text:
   f4:	12 e0       	ldi	r17, 0x02	; 2
   f6:	a0 e0       	ldi	r26, 0x00	; 0
   f8:	b2 e0       	ldi	r27, 0x02	; 2
-  fa:	ea ef       	ldi	r30, 0xFA	; 250
-  fc:	f1 e0       	ldi	r31, 0x01	; 1
+  fa:	ea e1       	ldi	r30, 0x1A	; 26
+  fc:	f2 e0       	ldi	r31, 0x02	; 2
   fe:	00 e0       	ldi	r16, 0x00	; 0
  100:	0b bf       	out	0x3b, r16	; 59
  102:	02 c0       	rjmp	.+4      	; 0x108 <__do_copy_data+0x14>
@@ -187,7 +187,7 @@ Disassembly of section .text:
  11a:	b2 07       	cpc	r27, r18
  11c:	e1 f7       	brne	.-8      	; 0x116 <.do_clear_bss_loop>
  11e:	5d d0       	rcall	.+186    	; 0x1da <main>
- 120:	6a c0       	rjmp	.+212    	; 0x1f6 <_exit>
+ 120:	7a c0       	rjmp	.+244    	; 0x216 <_exit>
 
 00000122 <__bad_interrupt>:
  122:	6e cf       	rjmp	.-292    	; 0x0 <__vectors>
@@ -379,35 +379,59 @@ void Lcd_Init_Conf (void)
  1d8:	08 95       	ret
 
 000001da <main>:
-void Lcd_Display_String (char *cadena);
 /* Principal */
 
 int main(void)
 {
+	/* Manejo de pines secundarios */
+	LED_AS_OUTPUT();
+ 1da:	8a b1       	in	r24, 0x0a	; 10
+ 1dc:	80 61       	ori	r24, 0x10	; 16
+ 1de:	8a b9       	out	0x0a, r24	; 10
+	
+	/* Manejo del LCD */
 	Lcd_Pines_Init(); // Iniciamos los pines del LCD
- 1da:	a4 df       	rcall	.-184    	; 0x124 <Lcd_Pines_Init>
+ 1e0:	a1 df       	rcall	.-190    	; 0x124 <Lcd_Pines_Init>
 	Lcd_Init_Conf(); // Iniciamos el LCD
- 1dc:	dd df       	rcall	.-70     	; 0x198 <Lcd_Init_Conf>
- 1de:	60 e0       	ldi	r22, 0x00	; 0
+ 1e2:	da df       	rcall	.-76     	; 0x198 <Lcd_Init_Conf>
+ 1e4:	60 e0       	ldi	r22, 0x00	; 0
+	
 	/* Mandaremos los caracteres */
 	Lcd_Cursor_Set(LCD_1_FIL, LCD_1_COL);
- 1e0:	80 e0       	ldi	r24, 0x00	; 0
- 1e2:	cc df       	rcall	.-104    	; 0x17c <Lcd_Cursor_Set>
+ 1e6:	80 e0       	ldi	r24, 0x00	; 0
+ 1e8:	c9 df       	rcall	.-110    	; 0x17c <Lcd_Cursor_Set>
 	Lcd_Display_Byte('b');
- 1e4:	82 e6       	ldi	r24, 0x62	; 98
- 1e6:	b3 df       	rcall	.-154    	; 0x14e <Lcd_Display_Byte>
+ 1ea:	82 e6       	ldi	r24, 0x62	; 98
+ 1ec:	b0 df       	rcall	.-160    	; 0x14e <Lcd_Display_Byte>
 	Lcd_Cursor_Set(LCD_2_FIL, LCD_1_COL);
- 1e8:	60 e0       	ldi	r22, 0x00	; 0
- 1ea:	81 e0       	ldi	r24, 0x01	; 1
- 1ec:	c7 df       	rcall	.-114    	; 0x17c <Lcd_Cursor_Set>
+ 1ee:	60 e0       	ldi	r22, 0x00	; 0
+ 1f0:	81 e0       	ldi	r24, 0x01	; 1
+ 1f2:	c4 df       	rcall	.-120    	; 0x17c <Lcd_Cursor_Set>
 	Lcd_Display_String("Hola :)");
- 1ee:	80 e0       	ldi	r24, 0x00	; 0
- 1f0:	92 e0       	ldi	r25, 0x02	; 2
- 1f2:	b2 df       	rcall	.-156    	; 0x158 <Lcd_Display_String>
- 1f4:	ff cf       	rjmp	.-2      	; 0x1f4 <main+0x1a>
+ 1f4:	80 e0       	ldi	r24, 0x00	; 0
+ 1f6:	92 e0       	ldi	r25, 0x02	; 2
+ 1f8:	af df       	rcall	.-162    	; 0x158 <Lcd_Display_String>
+ 1fa:	9b b1       	in	r25, 0x0b	; 11
+	
+	while (1)
+	{
+		LED_PORT ^= (1 << LED);
+ 1fc:	80 e1       	ldi	r24, 0x10	; 16
+ 1fe:	89 27       	eor	r24, r25
+ 200:	8b b9       	out	0x0b, r24	; 11
+ 202:	2f ef       	ldi	r18, 0xFF	; 255
+ 204:	83 ed       	ldi	r24, 0xD3	; 211
+ 206:	90 e3       	ldi	r25, 0x30	; 48
+ 208:	21 50       	subi	r18, 0x01	; 1
+ 20a:	80 40       	sbci	r24, 0x00	; 0
+ 20c:	90 40       	sbci	r25, 0x00	; 0
+ 20e:	e1 f7       	brne	.-8      	; 0x208 <main+0x2e>
+ 210:	00 c0       	rjmp	.+0      	; 0x212 <main+0x38>
+ 212:	00 00       	nop
+ 214:	f2 cf       	rjmp	.-28     	; 0x1fa <main+0x20>
 
-000001f6 <_exit>:
- 1f6:	f8 94       	cli
+00000216 <_exit>:
+ 216:	f8 94       	cli
 
-000001f8 <__stop_program>:
- 1f8:	ff cf       	rjmp	.-2      	; 0x1f8 <__stop_program>
+00000218 <__stop_program>:
+ 218:	ff cf       	rjmp	.-2      	; 0x218 <__stop_program>

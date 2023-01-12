@@ -79,6 +79,13 @@ union{
 #define LCD_UPPER_ROW		0
 #define LCD_LOWER_ROW		1
 
+// Macros de GPIO Secundarios
+
+#define LED_DDR		DDRD
+#define LED_PORT	PORTD
+#define LED		4
+#define LED_AS_OUTPUT() LED_DDR |= (1 << LED); 
+
 typedef enum
 {
 	LCD_1_COL = 0,
@@ -117,15 +124,23 @@ void Lcd_Display_String (char *cadena);
 
 int main(void)
 {
+	/* Manejo de pines secundarios */
+	LED_AS_OUTPUT();
+	
+	/* Manejo del LCD */
 	Lcd_Pines_Init(); // Iniciamos los pines del LCD
 	Lcd_Init_Conf(); // Iniciamos el LCD
+	
 	/* Mandaremos los caracteres */
 	Lcd_Cursor_Set(LCD_1_FIL, LCD_1_COL);
 	Lcd_Display_Byte('b');
 	Lcd_Cursor_Set(LCD_2_FIL, LCD_1_COL);
 	Lcd_Display_String("Hola :)");
+	
 	while (1)
 	{
+		LED_PORT ^= (1 << LED);
+		_delay_ms(1000);
 	}
 }
 
