@@ -19,5 +19,5 @@ int main(void)
 	}
 }
 
-/* Definición de funcione
+/* Definición de funcione */
 

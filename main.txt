@@ -1,0 +1,147 @@
+/* Inclusión de archivos */
+
+#include <Arduino.h>
+#include "MT_digital_filter.h"
+#include "MT_notch_filter.h"
+#include "MT_rc_filter.h"
+#include "rc_filter_lp.h"
+#include "Servo.h"
+
+/* Macros */
+
+#define HPF_FC 0.5
+#define LPF_FC 1.0
+
+#define N_SAMPLES 40
+
+#define SERVO1_PIN 8
+#define SERVO2_PIN 9
+#define SERVO3_PIN 10
+#define SERVO4_PIN 11
+#define SERVO5_PIN 12
+
+Servo servo1;
+Servo servo2;
+Servo servo3;
+Servo servo4;
+Servo servo5;
+
+/* Declaración de funciones */
+
+float rectification_function(float signal_to_rectificate);
+void init_servos_arm(void);
+void close_robotic_hand(void);
+void open_robotic_hand(void);
+
+/* Variables */
+
+rc_filter_t my_rc_hpf;
+rc_filter_t my_rc_lpf;
+
+uint32_t counter;
+float max_value = 0;
+
+/* Principal */
+
+void setup()
+{
+  // Iniciamos los servomotores del brazo
+  init_servos_arm();
+  // Configurar un filtro RC pasa-alto con periodo de muestreo 1ms
+  // , frecuencia de corte 2 Hz y valor inicial de salida 0.
+  my_rc_hpf.sample_period_us = 500;
+  my_rc_hpf.cutoff_freq_hz = HPF_FC;
+  my_rc_hpf.initial_value = 0.0;
+  RC_HPF_Initialize(&my_rc_hpf);
+  RC_Filter_LP_Init();
+  // Iniciamos el terminal serial
+  Serial.begin(115200);
+}
+
+void loop()
+{
+  // put your main code here, to run repeatedly:
+  int signal_emg = analogRead(A0);
+  my_rc_hpf.filter_in = (float)(signal_emg);
+  RC_Filter_Apply(&my_rc_hpf);
+  float filtered_signal = my_rc_hpf.filter_out;
+  float rectificated_signal = rectification_function(filtered_signal);
+  counter++;
+  if (counter >= N_SAMPLES)
+  {
+    max_value = rectificated_signal;
+    counter = 0;
+  }
+  else
+  {
+    if (rectificated_signal > max_value)
+    {
+      max_value = rectificated_signal;
+    }
+  }
+  RC_Filter_Apply(&my_rc_lpf);
+  RC_Filter_LP_Apply(max_value);
+  float max_value_filtered = RC_LPF_01_Get_Output();
+  Serial.print(rectificated_signal + 220);
+  Serial.print(',');
+  Serial.print(max_value + 110);
+  Serial.print(',');
+  Serial.print(max_value_filtered);
+  Serial.print('\r');
+  delayMicroseconds(500);
+}
+
+void close_robotic_hand(void)
+{
+  servo1.write(180);
+  delay(100);
+  servo2.write(180);
+  delay(100);
+  servo3.write(180);
+  delay(100);
+  servo4.write(180);
+  delay(100);
+  servo5.write(180);
+  delay(100);
+}
+void open_robotic_hand(void)
+{
+  servo1.write(0);
+  delay(100);
+  servo2.write(0);
+  delay(100);
+  servo3.write(0);
+  delay(100);
+  servo4.write(0);
+  delay(100);
+  servo5.write(0);
+  delay(100);
+}
+
+/*
+ */
+
+/* Definición de funciones */
+
+void init_servos_arm(void)
+{
+  servo1.attach(SERVO1_PIN);
+  servo2.attach(SERVO2_PIN);
+  servo3.attach(SERVO3_PIN);
+  servo4.attach(SERVO4_PIN);
+  servo5.attach(SERVO5_PIN);
+}
+
+float rectification_function(float signal_to_rectificate)
+{
+  float signal_rectificated;
+  if (signal_to_rectificate < 0)
+  {
+    signal_rectificated = -signal_to_rectificate;
+  }
+  else
+  {
+    signal_rectificated = signal_rectificated;
+  }
+  return signal_rectificated;
+}

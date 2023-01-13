@@ -1,0 +1,286 @@
+
+DEBOUNCING_TEST.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800200  00800200  000001ae  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000015a  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  000001ae  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000001e0  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000020  00000000  00000000  00000220  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000c88  00000000  00000000  00000240  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000b81  00000000  00000000  00000ec8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000307  00000000  00000000  00001a49  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000024  00000000  00000000  00001d50  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000577  00000000  00000000  00001d74  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000000a6  00000000  00000000  000022eb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000010  00000000  00000000  00002391  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	71 c0       	rjmp	.+226    	; 0xe4 <__ctors_end>
+   2:	00 00       	nop
+   4:	79 c0       	rjmp	.+242    	; 0xf8 <__bad_interrupt>
+   6:	00 00       	nop
+   8:	77 c0       	rjmp	.+238    	; 0xf8 <__bad_interrupt>
+   a:	00 00       	nop
+   c:	75 c0       	rjmp	.+234    	; 0xf8 <__bad_interrupt>
+   e:	00 00       	nop
+  10:	73 c0       	rjmp	.+230    	; 0xf8 <__bad_interrupt>
+  12:	00 00       	nop
+  14:	71 c0       	rjmp	.+226    	; 0xf8 <__bad_interrupt>
+  16:	00 00       	nop
+  18:	6f c0       	rjmp	.+222    	; 0xf8 <__bad_interrupt>
+  1a:	00 00       	nop
+  1c:	6d c0       	rjmp	.+218    	; 0xf8 <__bad_interrupt>
+  1e:	00 00       	nop
+  20:	6b c0       	rjmp	.+214    	; 0xf8 <__bad_interrupt>
+  22:	00 00       	nop
+  24:	69 c0       	rjmp	.+210    	; 0xf8 <__bad_interrupt>
+  26:	00 00       	nop
+  28:	67 c0       	rjmp	.+206    	; 0xf8 <__bad_interrupt>
+  2a:	00 00       	nop
+  2c:	65 c0       	rjmp	.+202    	; 0xf8 <__bad_interrupt>
+  2e:	00 00       	nop
+  30:	63 c0       	rjmp	.+198    	; 0xf8 <__bad_interrupt>
+  32:	00 00       	nop
+  34:	61 c0       	rjmp	.+194    	; 0xf8 <__bad_interrupt>
+  36:	00 00       	nop
+  38:	5f c0       	rjmp	.+190    	; 0xf8 <__bad_interrupt>
+  3a:	00 00       	nop
+  3c:	5d c0       	rjmp	.+186    	; 0xf8 <__bad_interrupt>
+  3e:	00 00       	nop
+  40:	5b c0       	rjmp	.+182    	; 0xf8 <__bad_interrupt>
+  42:	00 00       	nop
+  44:	59 c0       	rjmp	.+178    	; 0xf8 <__bad_interrupt>
+  46:	00 00       	nop
+  48:	57 c0       	rjmp	.+174    	; 0xf8 <__bad_interrupt>
+  4a:	00 00       	nop
+  4c:	55 c0       	rjmp	.+170    	; 0xf8 <__bad_interrupt>
+  4e:	00 00       	nop
+  50:	53 c0       	rjmp	.+166    	; 0xf8 <__bad_interrupt>
+  52:	00 00       	nop
+  54:	51 c0       	rjmp	.+162    	; 0xf8 <__bad_interrupt>
+  56:	00 00       	nop
+  58:	4f c0       	rjmp	.+158    	; 0xf8 <__bad_interrupt>
+  5a:	00 00       	nop
+  5c:	4d c0       	rjmp	.+154    	; 0xf8 <__bad_interrupt>
+  5e:	00 00       	nop
+  60:	4b c0       	rjmp	.+150    	; 0xf8 <__bad_interrupt>
+  62:	00 00       	nop
+  64:	49 c0       	rjmp	.+146    	; 0xf8 <__bad_interrupt>
+  66:	00 00       	nop
+  68:	47 c0       	rjmp	.+142    	; 0xf8 <__bad_interrupt>
+  6a:	00 00       	nop
+  6c:	45 c0       	rjmp	.+138    	; 0xf8 <__bad_interrupt>
+  6e:	00 00       	nop
+  70:	43 c0       	rjmp	.+134    	; 0xf8 <__bad_interrupt>
+  72:	00 00       	nop
+  74:	41 c0       	rjmp	.+130    	; 0xf8 <__bad_interrupt>
+  76:	00 00       	nop
+  78:	3f c0       	rjmp	.+126    	; 0xf8 <__bad_interrupt>
+  7a:	00 00       	nop
+  7c:	3d c0       	rjmp	.+122    	; 0xf8 <__bad_interrupt>
+  7e:	00 00       	nop
+  80:	3b c0       	rjmp	.+118    	; 0xf8 <__bad_interrupt>
+  82:	00 00       	nop
+  84:	39 c0       	rjmp	.+114    	; 0xf8 <__bad_interrupt>
+  86:	00 00       	nop
+  88:	37 c0       	rjmp	.+110    	; 0xf8 <__bad_interrupt>
+  8a:	00 00       	nop
+  8c:	35 c0       	rjmp	.+106    	; 0xf8 <__bad_interrupt>
+  8e:	00 00       	nop
+  90:	33 c0       	rjmp	.+102    	; 0xf8 <__bad_interrupt>
+  92:	00 00       	nop
+  94:	31 c0       	rjmp	.+98     	; 0xf8 <__bad_interrupt>
+  96:	00 00       	nop
+  98:	2f c0       	rjmp	.+94     	; 0xf8 <__bad_interrupt>
+  9a:	00 00       	nop
+  9c:	2d c0       	rjmp	.+90     	; 0xf8 <__bad_interrupt>
+  9e:	00 00       	nop
+  a0:	2b c0       	rjmp	.+86     	; 0xf8 <__bad_interrupt>
+  a2:	00 00       	nop
+  a4:	29 c0       	rjmp	.+82     	; 0xf8 <__bad_interrupt>
+  a6:	00 00       	nop
+  a8:	27 c0       	rjmp	.+78     	; 0xf8 <__bad_interrupt>
+  aa:	00 00       	nop
+  ac:	25 c0       	rjmp	.+74     	; 0xf8 <__bad_interrupt>
+  ae:	00 00       	nop
+  b0:	23 c0       	rjmp	.+70     	; 0xf8 <__bad_interrupt>
+  b2:	00 00       	nop
+  b4:	21 c0       	rjmp	.+66     	; 0xf8 <__bad_interrupt>
+  b6:	00 00       	nop
+  b8:	1f c0       	rjmp	.+62     	; 0xf8 <__bad_interrupt>
+  ba:	00 00       	nop
+  bc:	1d c0       	rjmp	.+58     	; 0xf8 <__bad_interrupt>
+  be:	00 00       	nop
+  c0:	1b c0       	rjmp	.+54     	; 0xf8 <__bad_interrupt>
+  c2:	00 00       	nop
+  c4:	19 c0       	rjmp	.+50     	; 0xf8 <__bad_interrupt>
+  c6:	00 00       	nop
+  c8:	17 c0       	rjmp	.+46     	; 0xf8 <__bad_interrupt>
+  ca:	00 00       	nop
+  cc:	15 c0       	rjmp	.+42     	; 0xf8 <__bad_interrupt>
+  ce:	00 00       	nop
+  d0:	13 c0       	rjmp	.+38     	; 0xf8 <__bad_interrupt>
+  d2:	00 00       	nop
+  d4:	11 c0       	rjmp	.+34     	; 0xf8 <__bad_interrupt>
+  d6:	00 00       	nop
+  d8:	0f c0       	rjmp	.+30     	; 0xf8 <__bad_interrupt>
+  da:	00 00       	nop
+  dc:	0d c0       	rjmp	.+26     	; 0xf8 <__bad_interrupt>
+  de:	00 00       	nop
+  e0:	0b c0       	rjmp	.+22     	; 0xf8 <__bad_interrupt>
+	...
+
+000000e4 <__ctors_end>:
+  e4:	11 24       	eor	r1, r1
+  e6:	1f be       	out	0x3f, r1	; 63
+  e8:	cf ef       	ldi	r28, 0xFF	; 255
+  ea:	d1 e2       	ldi	r29, 0x21	; 33
+  ec:	de bf       	out	0x3e, r29	; 62
+  ee:	cd bf       	out	0x3d, r28	; 61
+  f0:	00 e0       	ldi	r16, 0x00	; 0
+  f2:	0c bf       	out	0x3c, r16	; 60
+  f4:	02 d0       	rcall	.+4      	; 0xfa <main>
+  f6:	2f c0       	rjmp	.+94     	; 0x156 <_exit>
+
+000000f8 <__bad_interrupt>:
+  f8:	83 cf       	rjmp	.-250    	; 0x0 <__vectors>
+
+000000fa <main>:
+
+int main(void)
+{
+	/* Replace with your application code */
+	// Boton como entrada
+	DDR_BUTTON &= ~(MASK_BUTTON);
+  fa:	84 b1       	in	r24, 0x04	; 4
+  fc:	8b 7f       	andi	r24, 0xFB	; 251
+  fe:	84 b9       	out	0x04, r24	; 4
+	// Led como salida
+	DDR_LED |= (MASK_LED);
+ 100:	84 b1       	in	r24, 0x04	; 4
+ 102:	88 60       	ori	r24, 0x08	; 8
+ 104:	84 b9       	out	0x04, r24	; 4
+	PORT_LED &= ~(MASK_LED); // Led apagado
+ 106:	85 b1       	in	r24, 0x05	; 5
+ 108:	87 7f       	andi	r24, 0xF7	; 247
+ 10a:	85 b9       	out	0x05, r24	; 5
+	
+	bool button_press = false; // Estado del boton
+	uint16_t pressed_button_counter = 0; // Contador de muestras de boton presionado
+	uint16_t released_button_counter = 0; // Contador de muestras de boton suelto
+ 10c:	20 e0       	ldi	r18, 0x00	; 0
+ 10e:	30 e0       	ldi	r19, 0x00	; 0
+	// Led como salida
+	DDR_LED |= (MASK_LED);
+	PORT_LED &= ~(MASK_LED); // Led apagado
+	
+	bool button_press = false; // Estado del boton
+	uint16_t pressed_button_counter = 0; // Contador de muestras de boton presionado
+ 110:	80 e0       	ldi	r24, 0x00	; 0
+ 112:	90 e0       	ldi	r25, 0x00	; 0
+	DDR_BUTTON &= ~(MASK_BUTTON);
+	// Led como salida
+	DDR_LED |= (MASK_LED);
+	PORT_LED &= ~(MASK_LED); // Led apagado
+	
+	bool button_press = false; // Estado del boton
+ 114:	40 e0       	ldi	r20, 0x00	; 0
+ 116:	02 c0       	rjmp	.+4      	; 0x11c <main+0x22>
+				if (!button_press)
+				{
+					PORT_LED |= MASK_LED; // Prendemos el LED
+					button_press = true;
+				}
+				pressed_button_counter = 0;
+ 118:	80 e0       	ldi	r24, 0x00	; 0
+ 11a:	90 e0       	ldi	r25, 0x00	; 0
+	uint16_t pressed_button_counter = 0; // Contador de muestras de boton presionado
+	uint16_t released_button_counter = 0; // Contador de muestras de boton suelto
+	
+	while (1)
+	{
+		if (bit_is_set(PIN_BUTTON, BUTTON_PIN))
+ 11c:	1a 9b       	sbis	0x03, 2	; 3
+ 11e:	0e c0       	rjmp	.+28     	; 0x13c <main+0x42>
+		{
+			pressed_button_counter++;
+ 120:	01 96       	adiw	r24, 0x01	; 1
+			if(pressed_button_counter > CONFIDENCE_LEVEL)
+ 122:	85 3f       	cpi	r24, 0xF5	; 245
+ 124:	51 e0       	ldi	r21, 0x01	; 1
+ 126:	95 07       	cpc	r25, r21
+ 128:	c8 f3       	brcs	.-14     	; 0x11c <main+0x22>
+			{
+				if (!button_press)
+ 12a:	41 11       	cpse	r20, r1
+ 12c:	f5 cf       	rjmp	.-22     	; 0x118 <main+0x1e>
+				{
+					PORT_LED |= MASK_LED; // Prendemos el LED
+ 12e:	85 b1       	in	r24, 0x05	; 5
+ 130:	88 60       	ori	r24, 0x08	; 8
+ 132:	85 b9       	out	0x05, r24	; 5
+					button_press = true;
+				}
+				pressed_button_counter = 0;
+ 134:	80 e0       	ldi	r24, 0x00	; 0
+ 136:	90 e0       	ldi	r25, 0x00	; 0
+			if(pressed_button_counter > CONFIDENCE_LEVEL)
+			{
+				if (!button_press)
+				{
+					PORT_LED |= MASK_LED; // Prendemos el LED
+					button_press = true;
+ 138:	41 e0       	ldi	r20, 0x01	; 1
+ 13a:	f0 cf       	rjmp	.-32     	; 0x11c <main+0x22>
+				pressed_button_counter = 0;
+			}
+		}
+		else
+		{
+			released_button_counter++;
+ 13c:	2f 5f       	subi	r18, 0xFF	; 255
+ 13e:	3f 4f       	sbci	r19, 0xFF	; 255
+			if(released_button_counter > CONFIDENCE_LEVEL)
+ 140:	25 3f       	cpi	r18, 0xF5	; 245
+ 142:	51 e0       	ldi	r21, 0x01	; 1
+ 144:	35 07       	cpc	r19, r21
+ 146:	50 f3       	brcs	.-44     	; 0x11c <main+0x22>
+			{
+				PORT_LED &= ~MASK_LED;
+ 148:	25 b1       	in	r18, 0x05	; 5
+ 14a:	27 7f       	andi	r18, 0xF7	; 247
+ 14c:	25 b9       	out	0x05, r18	; 5
+				button_press = false;
+				released_button_counter = 0;
+ 14e:	20 e0       	ldi	r18, 0x00	; 0
+ 150:	30 e0       	ldi	r19, 0x00	; 0
+		{
+			released_button_counter++;
+			if(released_button_counter > CONFIDENCE_LEVEL)
+			{
+				PORT_LED &= ~MASK_LED;
+				button_press = false;
+ 152:	40 e0       	ldi	r20, 0x00	; 0
+ 154:	e3 cf       	rjmp	.-58     	; 0x11c <main+0x22>
+
+00000156 <_exit>:
+ 156:	f8 94       	cli
+
+00000158 <__stop_program>:
+ 158:	ff cf       	rjmp	.-2      	; 0x158 <__stop_program>
