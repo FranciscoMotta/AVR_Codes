@@ -1,9 +1,11 @@
+#define F_CPU 16000000UL
+
 /* Inclusión de archivos */
 
-#include <avr/io.h>  
+#include <avr/io.h>
+#include <util/delay.h>
 
 /* Definicion de macros */
-
 
 /* Declaración de funciones */
 
@@ -11,10 +13,11 @@
 
 int main(void)
 {
-    /* Replace with your application code */
-    while (1) 
-    {
-    }
+	/* Replace with your application code */
+	while (1)
+	{
+	}
 }
 
-/* Definición de funciones */
+/* Definición de funcione
+

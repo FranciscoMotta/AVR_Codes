@@ -10,7 +10,8 @@
 /* Inclusión de archivos */
 
 #include <avr/io.h>
-#include <util/delay.h>
+#include <util/delay.h> 
+#include <avr/sfr_defs.h>
 
 /* Definicion de macros */
 
@@ -28,6 +29,7 @@
 
 int main(void)
 {
+	bit_is_clear();
 	/* Replace with your application code */
 	DDR_BOTON &= ~(1 << BOTON); // Boton como entrada
 	DDR_LED |= (1 << LED); // Led como salida
