@@ -78,6 +78,7 @@ int main(void)
 					led_contador[0]++;
 					if (led_contador[0] > 7)
 					{
+						_delay_ms(500);
 						led_contador[0] = 1;
 						PORT_LEDS_J2 = 0x01;
 						led_contador[1] = 1;
@@ -119,6 +120,7 @@ int main(void)
 					led_contador[1]++;
 					if (led_contador[1] > 7)
 					{
+						_delay_ms(500);
 						led_contador[1] = 1;
 						uint8_t contador = 0;
 						PORT_LEDS_J1 = 0x01;
