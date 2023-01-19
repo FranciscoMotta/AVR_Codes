@@ -57,7 +57,7 @@ int main(void)
 	while (1)
 	{
 		ROUGE_LED_TOGGLE();
-		_delay_ms(500);
+		_delay_ms(100);
 	}
 }
 
