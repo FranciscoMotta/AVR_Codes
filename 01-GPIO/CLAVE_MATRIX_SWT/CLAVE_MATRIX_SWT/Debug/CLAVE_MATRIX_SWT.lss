@@ -3,31 +3,31 @@ CLAVE_MATRIX_SWT.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000078  00800200  00000500  00000594  2**0
+  0 .data         00000076  00800200  00000500  00000594  2**0
                   CONTENTS, ALLOC, LOAD, DATA
   1 .text         00000500  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000015  00800278  00800278  0000060c  2**0
+  2 .bss          00000015  00800276  00800276  0000060a  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  0000060c  2**0
+  3 .comment      00000030  00000000  00000000  0000060a  2**0
                   CONTENTS, READONLY
   4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  0000063c  2**2
                   CONTENTS, READONLY
   5 .debug_aranges 00000068  00000000  00000000  0000067c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000016bc  00000000  00000000  000006e4  2**0
+  6 .debug_info   000016ac  00000000  00000000  000006e4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000e20  00000000  00000000  00001da0  2**0
+  7 .debug_abbrev 00000e20  00000000  00000000  00001d90  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000654  00000000  00000000  00002bc0  2**0
+  8 .debug_line   00000654  00000000  00000000  00002bb0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000000d4  00000000  00000000  00003214  2**2
+  9 .debug_frame  000000d4  00000000  00000000  00003204  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000bae  00000000  00000000  000032e8  2**0
+ 10 .debug_str    00000bae  00000000  00000000  000032d8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    0000023b  00000000  00000000  00003e96  2**0
+ 11 .debug_loc    0000023b  00000000  00000000  00003e86  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000060  00000000  00000000  000040d1  2**0
+ 12 .debug_ranges 00000060  00000000  00000000  000040c1  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -169,13 +169,13 @@ Disassembly of section .text:
  102:	02 c0       	rjmp	.+4      	; 0x108 <__do_copy_data+0x14>
  104:	07 90       	elpm	r0, Z+
  106:	0d 92       	st	X+, r0
- 108:	a8 37       	cpi	r26, 0x78	; 120
+ 108:	a6 37       	cpi	r26, 0x76	; 118
  10a:	b1 07       	cpc	r27, r17
  10c:	d9 f7       	brne	.-10     	; 0x104 <__do_copy_data+0x10>
 
 0000010e <__do_clear_bss>:
  10e:	22 e0       	ldi	r18, 0x02	; 2
- 110:	a8 e7       	ldi	r26, 0x78	; 120
+ 110:	a6 e7       	ldi	r26, 0x76	; 118
  112:	b2 e0       	ldi	r27, 0x02	; 2
  114:	01 c0       	rjmp	.+2      	; 0x118 <.do_clear_bss_start>
 
@@ -183,7 +183,7 @@ Disassembly of section .text:
  116:	1d 92       	st	X+, r1
 
 00000118 <.do_clear_bss_start>:
- 118:	ad 38       	cpi	r26, 0x8D	; 141
+ 118:	ab 38       	cpi	r26, 0x8B	; 139
  11a:	b2 07       	cpc	r27, r18
  11c:	e1 f7       	brne	.-8      	; 0x116 <.do_clear_bss_loop>
  11e:	2a d0       	rcall	.+84     	; 0x174 <main>
@@ -199,7 +199,7 @@ Disassembly of section .text:
 void UART_Init_Local (void)
 {
 	my_uart.baudios = BAUDRATE_9600;
- 124:	ee e7       	ldi	r30, 0x7E	; 126
+ 124:	ec e7       	ldi	r30, 0x7C	; 124
  126:	f2 e0       	ldi	r31, 0x02	; 2
  128:	80 e8       	ldi	r24, 0x80	; 128
  12a:	95 e2       	ldi	r25, 0x25	; 37
@@ -273,7 +273,7 @@ int main(void)
  174:	d7 df       	rcall	.-82     	; 0x124 <UART_Init_Local>
 	Init_pines(); // Iniciamos los pines del Atmega2560
  176:	f1 df       	rcall	.-30     	; 0x15a <Init_pines>
- 178:	88 e3       	ldi	r24, 0x38	; 56
+ 178:	87 e3       	ldi	r24, 0x37	; 55
 	UART0_Escribir_Cadena(mensaje_inicial);
  17a:	92 e0       	ldi	r25, 0x02	; 2
  17c:	88 d1       	rcall	.+784    	; 0x48e <UART0_Escribir_Cadena>
@@ -281,7 +281,7 @@ int main(void)
  180:	04 9b       	sbis	0x00, 4	; 0
 	while (1)
 	{
-		while (clave_index < 4)
+		while (clave_index < CLAVE_LENG)
 		{
 			if(PIN_MATRIX & (1 << MATRIX_DE))
  182:	14 c0       	rjmp	.+40     	; 0x1ac <main+0x38>
@@ -294,28 +294,28 @@ int main(void)
  18a:	cf 70       	andi	r28, 0x0F	; 15
  18c:	d0 e0       	ldi	r29, 0x00	; 0
 				UART0_Escribir_Byte(datos_decode_matrix[data_from_matrix]);
- 18e:	c4 5b       	subi	r28, 0xB4	; 180
+ 18e:	c5 5b       	subi	r28, 0xB5	; 181
  190:	dd 4f       	sbci	r29, 0xFD	; 253
  192:	88 81       	ld	r24, Y
  194:	75 d1       	rcall	.+746    	; 0x480 <UART0_Escribir_Byte>
- 196:	80 91 79 02 	lds	r24, 0x0279	; 0x800279 <clave_index>
+ 196:	80 91 77 02 	lds	r24, 0x0277	; 0x800277 <clave_index>
 				clave_user[clave_index] = datos_decode_matrix[data_from_matrix];
  19a:	e8 2f       	mov	r30, r24
  19c:	f0 e0       	ldi	r31, 0x00	; 0
  19e:	98 81       	ld	r25, Y
- 1a0:	e6 58       	subi	r30, 0x86	; 134
+ 1a0:	e8 58       	subi	r30, 0x88	; 136
  1a2:	fd 4f       	sbci	r31, 0xFD	; 253
  1a4:	90 83       	st	Z, r25
  1a6:	8f 5f       	subi	r24, 0xFF	; 255
 				clave_index++;
- 1a8:	80 93 79 02 	sts	0x0279, r24	; 0x800279 <clave_index>
- 1ac:	80 91 79 02 	lds	r24, 0x0279	; 0x800279 <clave_index>
+ 1a8:	80 93 77 02 	sts	0x0277, r24	; 0x800277 <clave_index>
+ 1ac:	80 91 77 02 	lds	r24, 0x0277	; 0x800277 <clave_index>
 	UART_Init_Local(); // Iniciamos el UART
 	Init_pines(); // Iniciamos los pines del Atmega2560
 	UART0_Escribir_Cadena(mensaje_inicial);
 	while (1)
 	{
-		while (clave_index < 4)
+		while (clave_index < CLAVE_LENG)
  1b0:	84 30       	cpi	r24, 0x04	; 4
  1b2:	30 f3       	brcs	.-52     	; 0x180 <main+0xc>
 				UART0_Escribir_Byte(datos_decode_matrix[data_from_matrix]);
@@ -327,14 +327,14 @@ int main(void)
  1b4:	8d e0       	ldi	r24, 0x0D	; 13
  1b6:	64 d1       	rcall	.+712    	; 0x480 <UART0_Escribir_Byte>
 		clave_index = 0;
- 1b8:	10 92 79 02 	sts	0x0279, r1	; 0x800279 <clave_index>
+ 1b8:	10 92 77 02 	sts	0x0277, r1	; 0x800277 <clave_index>
 		UART0_Escribir_Cadena(mensaje_clave_in);
- 1bc:	87 e2       	ldi	r24, 0x27	; 39
+ 1bc:	86 e2       	ldi	r24, 0x26	; 38
  1be:	92 e0       	ldi	r25, 0x02	; 2
  1c0:	66 d1       	rcall	.+716    	; 0x48e <UART0_Escribir_Cadena>
  1c2:	20 e0       	ldi	r18, 0x00	; 0
 		uint8_t equality_counter = 0;
-		for (uint8_t i = 0 ; i < 4 ; i++)
+		for (uint8_t i = 0 ; i < CLAVE_LENG ; i++)
  1c4:	40 e0       	ldi	r20, 0x00	; 0
 			}
 		}
@@ -343,13 +343,13 @@ int main(void)
 		UART0_Escribir_Cadena(mensaje_clave_in);
 		uint8_t equality_counter = 0;
  1c6:	0e c0       	rjmp	.+28     	; 0x1e4 <main+0x70>
-		for (uint8_t i = 0 ; i < 4 ; i++)
+		for (uint8_t i = 0 ; i < CLAVE_LENG ; i++)
  1c8:	82 2f       	mov	r24, r18
 		{
 			if (clave_user[i] == clave_save[i])
  1ca:	90 e0       	ldi	r25, 0x00	; 0
  1cc:	fc 01       	movw	r30, r24
- 1ce:	e6 58       	subi	r30, 0x86	; 134
+ 1ce:	e8 58       	subi	r30, 0x88	; 136
  1d0:	fd 4f       	sbci	r31, 0xFD	; 253
  1d2:	30 81       	ld	r19, Z
  1d4:	fc 01       	movw	r30, r24
@@ -367,7 +367,7 @@ int main(void)
 		clave_index = 0;
 		UART0_Escribir_Cadena(mensaje_clave_in);
 		uint8_t equality_counter = 0;
-		for (uint8_t i = 0 ; i < 4 ; i++)
+		for (uint8_t i = 0 ; i < CLAVE_LENG ; i++)
  1e4:	24 30       	cpi	r18, 0x04	; 4
  1e6:	80 f3       	brcs	.-32     	; 0x1c8 <main+0x54>
 			if (clave_user[i] == clave_save[i])
@@ -375,12 +375,12 @@ int main(void)
 				equality_counter++;
 			}
 		}
-		if (equality_counter == 4)
+		if (equality_counter == CLAVE_LENG)
  1e8:	44 30       	cpi	r20, 0x04	; 4
  1ea:	c1 f4       	brne	.+48     	; 0x21c <main+0xa8>
 		{
 			UART0_Escribir_Cadena(mensaje_clave_ok);
- 1ec:	87 e1       	ldi	r24, 0x17	; 23
+ 1ec:	86 e1       	ldi	r24, 0x16	; 22
  1ee:	92 e0       	ldi	r25, 0x02	; 2
  1f0:	4e d1       	rcall	.+668    	; 0x48e <UART0_Escribir_Cadena>
  1f2:	88 b1       	in	r24, 0x08	; 8
@@ -407,7 +407,7 @@ int main(void)
 			MOTOR_DISABLE();
  20c:	8f 7d       	andi	r24, 0xDF	; 223
  20e:	88 b9       	out	0x08, r24	; 8
- 210:	10 92 78 02 	sts	0x0278, r1	; 0x800278 <__data_end>
+ 210:	10 92 76 02 	sts	0x0276, r1	; 0x800276 <__data_end>
 			intentos = 0;
 			PORT_LEDS &= ~(MASK_LEDS);
  214:	88 b1       	in	r24, 0x08	; 8
@@ -418,14 +418,14 @@ int main(void)
 		else
 		{
 			UART0_Escribir_Cadena(mensaje_clave_nok);
- 21c:	85 e0       	ldi	r24, 0x05	; 5
+ 21c:	84 e0       	ldi	r24, 0x04	; 4
  21e:	92 e0       	ldi	r25, 0x02	; 2
  220:	36 d1       	rcall	.+620    	; 0x48e <UART0_Escribir_Cadena>
  222:	28 b1       	in	r18, 0x08	; 8
 			PORT_LEDS |= (1 << intentos);
  224:	81 e0       	ldi	r24, 0x01	; 1
  226:	90 e0       	ldi	r25, 0x00	; 0
- 228:	00 90 78 02 	lds	r0, 0x0278	; 0x800278 <__data_end>
+ 228:	00 90 76 02 	lds	r0, 0x0276	; 0x800276 <__data_end>
  22c:	02 c0       	rjmp	.+4      	; 0x232 <main+0xbe>
  22e:	88 0f       	add	r24, r24
  230:	99 1f       	adc	r25, r25
@@ -433,20 +433,20 @@ int main(void)
  234:	e2 f7       	brpl	.-8      	; 0x22e <main+0xba>
  236:	82 2b       	or	r24, r18
  238:	88 b9       	out	0x08, r24	; 8
- 23a:	80 91 78 02 	lds	r24, 0x0278	; 0x800278 <__data_end>
+ 23a:	80 91 76 02 	lds	r24, 0x0276	; 0x800276 <__data_end>
 			intentos++;
  23e:	8f 5f       	subi	r24, 0xFF	; 255
- 240:	80 93 78 02 	sts	0x0278, r24	; 0x800278 <__data_end>
+ 240:	80 93 76 02 	sts	0x0276, r24	; 0x800276 <__data_end>
 		}
 		equality_counter = 0;
-		if (intentos == 4)
- 244:	80 91 78 02 	lds	r24, 0x0278	; 0x800278 <__data_end>
+		if (intentos == MAX_NUM_INTE)
+ 244:	80 91 76 02 	lds	r24, 0x0276	; 0x800276 <__data_end>
  248:	84 30       	cpi	r24, 0x04	; 4
  24a:	09 f0       	breq	.+2      	; 0x24e <main+0xda>
  24c:	af cf       	rjmp	.-162    	; 0x1ac <main+0x38>
 		{
 			UART0_Escribir_Cadena("Supero numero de intentos\r");
- 24e:	8c e5       	ldi	r24, 0x5C	; 92
+ 24e:	8b e5       	ldi	r24, 0x5B	; 91
  250:	92 e0       	ldi	r25, 0x02	; 2
  252:	1d d1       	rcall	.+570    	; 0x48e <UART0_Escribir_Cadena>
  254:	98 b1       	in	r25, 0x08	; 8

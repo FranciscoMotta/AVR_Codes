@@ -45,6 +45,8 @@
 #define MOTOR_ENABLE()	PORT_MOTOR_LOCK |= MASK_MOTOR;
 #define MOTOR_DISABLE()	PORT_MOTOR_LOCK &= ~MASK_MOTOR;
  
+#define CLAVE_LENG	4  
+#define MAX_NUM_INTE 4
 /* Declaración de funciones */
 
 _my_uart_0_config_t my_uart;
@@ -63,8 +65,8 @@ char mensaje_inicial[] = "Escribe tu clave: \r";
 char mensaje_clave_in[] = "Clave ingresada\r";
 char mensaje_clave_ok[] = "Clave correcta\r";
 char mensaje_clave_nok[] = "Clave incorrecta\r";
-char clave_save[] = "4550";
-char clave_user[4];
+char clave_save[CLAVE_LENG] = "4550";
+char clave_user[CLAVE_LENG];
 uint8_t clave_index = 0;
 uint8_t intentos = 0;
 /* Principal */
@@ -77,7 +79,7 @@ int main(void)
 	UART0_Escribir_Cadena(mensaje_inicial);
 	while (1)
 	{
-		while (clave_index < 4)
+		while (clave_index < CLAVE_LENG)
 		{
 			if(PIN_MATRIX & (1 << MATRIX_DE))
 			{
@@ -92,14 +94,14 @@ int main(void)
 		clave_index = 0;
 		UART0_Escribir_Cadena(mensaje_clave_in);
 		uint8_t equality_counter = 0;
-		for (uint8_t i = 0 ; i < 4 ; i++)
+		for (uint8_t i = 0 ; i < CLAVE_LENG ; i++)
 		{
 			if (clave_user[i] == clave_save[i])
 			{
 				equality_counter++;
 			}
 		}
-		if (equality_counter == 4)
+		if (equality_counter == CLAVE_LENG)
 		{
 			UART0_Escribir_Cadena(mensaje_clave_ok);
 			MOTOR_ENABLE();
@@ -115,7 +117,7 @@ int main(void)
 			intentos++;
 		}
 		equality_counter = 0;
-		if (intentos == 4)
+		if (intentos == MAX_NUM_INTE)
 		{
 			UART0_Escribir_Cadena("Supero numero de intentos\r");
 			while (1)

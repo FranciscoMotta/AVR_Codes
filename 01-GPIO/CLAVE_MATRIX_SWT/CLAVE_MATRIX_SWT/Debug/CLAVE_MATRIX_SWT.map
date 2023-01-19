@@ -382,61 +382,60 @@ END GROUP
  *(.fini0)
                 0x00000500                _etext = .
 
-.data           0x00800200       0x78 load address 0x00000500
+.data           0x00800200       0x76 load address 0x00000500
                 0x00800200                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
  .data.clave_save
-                0x00800200        0x5 main.o
+                0x00800200        0x4 main.o
                 0x00800200                clave_save
  .data.mensaje_clave_nok
-                0x00800205       0x12 main.o
-                0x00800205                mensaje_clave_nok
+                0x00800204       0x12 main.o
+                0x00800204                mensaje_clave_nok
  .data.mensaje_clave_ok
-                0x00800217       0x10 main.o
-                0x00800217                mensaje_clave_ok
+                0x00800216       0x10 main.o
+                0x00800216                mensaje_clave_ok
  .data.mensaje_clave_in
-                0x00800227       0x11 main.o
-                0x00800227                mensaje_clave_in
+                0x00800226       0x11 main.o
+                0x00800226                mensaje_clave_in
  .data.mensaje_inicial
-                0x00800238       0x14 main.o
-                0x00800238                mensaje_inicial
+                0x00800237       0x14 main.o
+                0x00800237                mensaje_inicial
  .data.datos_decode_matrix
-                0x0080024c       0x10 main.o
-                0x0080024c                datos_decode_matrix
+                0x0080024b       0x10 main.o
+                0x0080024b                datos_decode_matrix
  *(.gnu.linkonce.d*)
  *(.rodata)
  *(.rodata*)
  .rodata.str1.1
-                0x0080025c       0x1b main.o
+                0x0080025b       0x1b main.o
  *(.gnu.linkonce.r*)
-                0x00800278                . = ALIGN (0x2)
- *fill*         0x00800277        0x1 
-                0x00800278                _edata = .
-                0x00800278                PROVIDE (__data_end, .)
+                0x00800276                . = ALIGN (0x2)
+                0x00800276                _edata = .
+                0x00800276                PROVIDE (__data_end, .)
 
-.bss            0x00800278       0x15
-                0x00800278                PROVIDE (__bss_start, .)
+.bss            0x00800276       0x15
+                0x00800276                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.intentos  0x00800278        0x1 main.o
-                0x00800278                intentos
+ .bss.intentos  0x00800276        0x1 main.o
+                0x00800276                intentos
  .bss.clave_index
-                0x00800279        0x1 main.o
-                0x00800279                clave_index
+                0x00800277        0x1 main.o
+                0x00800277                clave_index
  *(COMMON)
- COMMON         0x0080027a       0x13 main.o
-                0x0080027a                clave_user
-                0x0080027e                my_uart
-                0x0080028d                PROVIDE (__bss_end, .)
+ COMMON         0x00800278       0x13 main.o
+                0x00800278                clave_user
+                0x0080027c                my_uart
+                0x0080028b                PROVIDE (__bss_end, .)
                 0x00000500                __data_load_start = LOADADDR (.data)
-                0x00000578                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000576                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0080028d        0x0
+.noinit         0x0080028b        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x0080028d                _end = .
+                0x0080028b                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -512,11 +511,11 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x16bc
+.debug_info     0x00000000     0x16ac
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0xbbc D:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega2560/avr6/crtatmega2560.o
- .debug_info    0x00000bbc      0x6be main.o
- .debug_info    0x0000127a      0x442 USART/FM_USART.o
+ .debug_info    0x00000bbc      0x6ae main.o
+ .debug_info    0x0000126a      0x442 USART/FM_USART.o
 
 .debug_abbrev   0x00000000      0xe20
  *(.debug_abbrev)
