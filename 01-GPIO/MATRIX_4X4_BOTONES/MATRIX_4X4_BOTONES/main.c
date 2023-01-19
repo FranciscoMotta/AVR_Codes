@@ -56,7 +56,6 @@ int main(void)
 	{
 		if (PIN_MATRIX_BOT & (1 << MATRIX_BOT_DA))
 		{
-			uint8_t pos_deco = (PIN_MATRIX_BOT & MASK_MATRIX_DE);
 			PORT_LEDS = PIN_MATRIX_BOT & 0x0F;
 		}
 	}
