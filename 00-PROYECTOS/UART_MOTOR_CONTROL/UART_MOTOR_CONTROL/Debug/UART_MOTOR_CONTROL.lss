@@ -667,7 +667,6 @@ void Init_GPIO_Motor (void)
  40c:	08 95       	ret
 
 0000040e <UART_Initialice>:
-	
 }
 
 void UART_Initialice (void)

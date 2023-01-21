@@ -82,13 +82,11 @@ ISR(USART0_RX_vect)
 ISR(INT0_vect)
 {
 	state_motor = false;
-	fprintf("parada emergencia\n\r");
 }
 
 ISR(INT1_vect)
 {
 	state_motor = true;
-	fprintf("marcha directa\n\r");
 }
 
 /* Declaración de funciones */
@@ -154,7 +152,6 @@ void Init_GPIO_Motor (void)
 	
 	LEDS_PORT &= ~MASK_LEDS;
 	MOTOR_PORT &= ~MASK_MOTOR;
-	
 }
 
 void UART_Initialice (void)
