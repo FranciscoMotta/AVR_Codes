@@ -72,7 +72,7 @@ ISR(INT0_vect)
 	LUZ_VERDE_OFF();
 	LUZ_ROJA_ON();
 	LUZ_AMBAR_OFF();
-	_delay_ms(5000);
+	_delay_ms(4000);
 	soft_reset();
 }
 

@@ -38,7 +38,7 @@ void UART0_Init (_my_uart_0_config_t *uart_params)
 	
 	// Registro UCSR0B
 	
-	UCSR0B |= (uart_params->interrupcion_rx << RXCIE0) | (uart_params->habilitar_tx << TXCIE0) | (uart_params->noveno_bit_tx << TXB80);
+	UCSR0B |= (uart_params->interrupcion_rx << RXCIE0) | (uart_params->interrupcion_tx << TXCIE0) | (uart_params->noveno_bit_tx << TXB80);
 	UCSR0B |= (uart_params->habilitar_rx << RXEN0) | (uart_params->habilitar_tx << TXEN0);
 	
 	uint8_t long_caracter = uart_params->longitud_caracter;
